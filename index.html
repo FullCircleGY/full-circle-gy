@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full Circle GY</title>
+<meta name="description" content="Full Circle GY: clothing, FC Tech and FC Kicks. Browse, add to cart and order on WhatsApp.">
+<link rel="icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a silver floor with rounded white tiles in a bento grid.
+   One green accent for actions, one dark tile for WhatsApp ordering, gold only as a highlight. */
+:root {
+  color-scheme: light;
+  --floor: #eceef0;
+  --tile: #ffffff;
+  --ink: #111413;
+  --muted: #59605d;
+  --line: #d9dcdf;
+  --soft: #eff1f2;
+  --green: #087a3a;
+  --green-deep: #05552a;
+  --gold: #fcd116;
+  --red: #ce1126;
+  --r: 28px;
+  --font: "Outfit", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--floor); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.45; }
+img { max-width: 100%; display: block; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--green); text-decoration: none; }
+a:hover { color: var(--green-deep); }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; text-wrap: balance; }
+.wrap { width: min(1200px, 100%); margin: 0 auto; padding: 0 24px; }
+
+.draft { background: var(--ink); color: #fff; font-size: 13px; text-align: center; padding: 7px 16px; }
+.draft b { color: var(--gold); }
+
+header.bar { position: sticky; top: 0; z-index: 20; background: rgba(236, 238, 240, .9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; gap: 8px 20px; min-height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); margin-right: auto; font-weight: 700; font-size: 17px; white-space: nowrap; }
+.brand:hover { color: var(--ink); }
+.badge { border-radius: 50%; overflow: hidden; flex: none; position: relative; background: #fff; }
+.badge img { position: absolute; width: 130%; max-width: none; left: -15%; top: -13%; }
+nav.depts { display: flex; gap: 4px; }
+nav.depts a { color: var(--ink); font-weight: 500; font-size: 15px; padding: 10px 14px; border-radius: 999px; white-space: nowrap; }
+nav.depts a:hover { background: var(--tile); }
+nav.depts a[aria-current="true"] { background: var(--ink); color: #fff; }
+.cart-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff; border: 0; border-radius: 999px; padding: 11px 18px; font-weight: 600; white-space: nowrap; }
+.cart-btn:hover { background: var(--green); }
+.cart-btn .n { background: var(--gold); color: var(--ink); border-radius: 999px; min-width: 22px; height: 22px; display: inline-grid; place-items: center; font-size: 13px; padding: 0 6px; font-variant-numeric: tabular-nums; }
+
+main.wrap { display: flex; flex-direction: column; gap: 16px; padding-top: 24px; padding-bottom: 24px; }
+.row { display: flex; flex-wrap: wrap; gap: 16px; }
+.tile { background: var(--tile); border-radius: var(--r); padding: 32px; min-width: 0; }
+.hero { flex: 2 1 520px; padding: 48px; min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; }
+.hero h1 { font-size: clamp(40px, 6vw, 62px); }
+.hero p { font-size: 20px; color: var(--muted); }
+.pill { display: inline-block; background: var(--green); color: #fff; font-weight: 600; padding: 13px 26px; border-radius: 999px; }
+.pill:hover { background: var(--green-deep); color: #fff; }
+.order { flex: 1 1 280px; background: var(--ink); color: #fff; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; }
+.order h2 { font-size: 30px; }
+.order p { color: #c5cbc8; }
+.order a { color: var(--gold); font-weight: 600; padding: 10px 0; }
+.order a:hover { color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+  .row > * { animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+  .row > *:nth-child(2) { animation-delay: .08s; }
+  .row > *:nth-child(3) { animation-delay: .16s; }
+  @keyframes rise { from { transform: translateY(14px); } to { transform: none; } }
+}
+
+.door { flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px; color: var(--ink); transition: box-shadow .2s; }
+.door:hover { color: var(--ink); box-shadow: 0 0 0 2px var(--green); }
+.door h2 { font-size: 28px; }
+.door p { color: var(--muted); }
+.door .art { height: 180px; border-radius: 20px; background: var(--soft); display: grid; place-items: center; margin-top: 8px; }
+.door .art svg { width: 84px; height: 84px; }
+.door b { color: var(--green); font-weight: 600; padding-top: 10px; }
+
+.shop { padding: 40px; }
+.shop-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+.shop-head h2 { font-size: 32px; }
+.shop-head span { color: var(--muted); font-size: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px 24px; }
+.item { display: flex; flex-direction: column; gap: 12px; }
+.pic { aspect-ratio: 4 / 3; border-radius: 20px; display: grid; place-items: center; background: var(--soft); position: relative; overflow: hidden; }
+.pic svg { width: 40%; height: auto; }
+.pic small { position: absolute; left: 12px; top: 12px; background: var(--tile); color: var(--ink); font-weight: 600; font-size: 12px; padding: 4px 10px; border-radius: 999px; }
+.pic img { width: 100%; height: 100%; object-fit: cover; }
+.info { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.info h3 { font-weight: 600; font-size: 17px; line-height: 1.25; }
+.info p { color: var(--muted); font-size: 14px; }
+.price { font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; margin-top: auto; padding-top: 4px; }
+.buy { display: flex; gap: 8px; margin-top: 4px; }
+.buy select { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 10px 12px; background: #fff; }
+.buy button { flex: 1.4; background: var(--ink); color: #fff; border: 0; border-radius: 999px; padding: 11px 14px; font-weight: 600; transition: background .2s; }
+.buy button:hover, .buy button.done { background: var(--green); }
+.buy button:disabled { background: var(--soft); color: var(--muted); cursor: default; }
+.draft[hidden] { display: none; }
+
+.how h2 { font-size: 28px; margin-bottom: 20px; }
+.how ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; }
+.how li { counter-increment: s; padding-left: 52px; position: relative; }
+.how li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 38px; height: 38px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; font-weight: 700; }
+.how b { display: block; font-weight: 600; }
+.how span { color: var(--muted); font-size: 15px; }
+
+footer { padding: 8px 0 40px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; }
+
+dialog.cart { margin: 0 0 0 auto; height: 100%; max-height: none; width: min(420px, 100%); max-width: 100%; border: 0; padding: 0; background: var(--tile); color: var(--ink); border-radius: var(--r) 0 0 var(--r); }
+dialog.cart::backdrop { background: rgba(17, 20, 19, .5); }
+.cart form { display: flex; flex-direction: column; min-height: 100%; }
+.cart header { position: sticky; top: 0; background: var(--tile); z-index: 1; display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+.cart header h2 { font-size: 24px; }
+.x { background: var(--soft); border: 0; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; line-height: 1; }
+.lines { flex: 1 0 auto; padding: 6px 22px; }
+.line { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.line b { font-weight: 600; }
+.line small { color: var(--muted); display: block; }
+.line .amt { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+.qty { display: inline-flex; align-items: center; gap: 8px; }
+.qty button { width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--soft); line-height: 1; }
+.qty span { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.empty { color: var(--muted); padding: 28px 0; text-align: center; }
+.sum { border-top: 1px solid var(--line); padding: 16px 22px 22px; display: flex; flex-direction: column; gap: 10px; }
+.total { display: flex; justify-content: space-between; align-items: baseline; }
+.total b { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pay { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.pay legend { font-size: 13px; font-weight: 600; padding: 0; margin-bottom: 6px; }
+.sum .opt { flex-direction: row; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; min-height: 48px; cursor: pointer; }
+.sum .opt:has(input:checked) { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.sum .opt input { width: 18px; height: 18px; padding: 0; accent-color: var(--green); }
+.sum .opt img { border-radius: 6px; }
+.mmg { background: var(--soft); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.mmg[hidden] { display: none; }
+.mmg ol { margin: 0; padding-left: 20px; font-size: 14px; display: flex; flex-direction: column; gap: 4px; }
+.sum label { font-size: 13px; font-weight: 600; display: flex; flex-direction: column; gap: 4px; }
+.sum input { border: 1px solid var(--line); border-radius: 14px; padding: 11px 14px; font-weight: 400; }
+.send { display: block; text-align: center; background: var(--green); color: #fff; font-weight: 600; padding: 14px; border-radius: 999px; }
+.send:hover { background: var(--green-deep); color: #fff; }
+.send[aria-disabled="true"] { background: var(--soft); color: var(--muted); pointer-events: none; }
+.copy { background: #fff; border: 1px solid var(--ink); border-radius: 999px; padding: 12px; font-weight: 600; }
+.note { font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .wrap { padding: 0 14px; }
+  .bar .wrap { flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; }
+  nav.depts { order: 3; width: 100%; overflow-x: auto; }
+  .hero { padding: 32px; min-height: 0; }
+  .shop { padding: 24px; }
+  .how ol { grid-template-columns: 1fr; }
+  dialog.cart { border-radius: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="draft"><b>Draft.</b> Products and prices below are samples until yours go in.</div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#all">
+      <div class="badge" style="width:42px;height:42px"><img src="logo.jpg" alt=""></div>
+      Full Circle GY
+    </a>
+    <nav class="depts" aria-label="Departments">
+      <a href="#all" data-dept="all">All</a>
+      <a href="#clothing" data-dept="clothing">Clothing</a>
+      <a href="#tech" data-dept="tech">FC Tech</a>
+      <a href="#kicks" data-dept="kicks">FC Kicks</a>
+    </nav>
+    <button class="cart-btn" id="open-cart" type="button">Cart <span class="n" id="count">0</span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="row">
+    <section class="tile hero">
+      <div class="badge" style="width:88px;height:88px"><img src="logo.jpg" alt="Full Circle GY logo"></div>
+      <h1>Everything you want, full circle.</h1>
+      <p>Clothing, tech and kicks in one store.</p>
+      <a class="pill" href="#shop">Shop now</a>
+    </section>
+    <section class="tile order">
+      <h2>Order on WhatsApp</h2>
+      <p>Send your cart as a message. We confirm stock, delivery and payment.</p>
+      <a href="#how">See how it works ›</a>
+    </section>
+  </div>
+
+  <div class="row">
+    <a class="tile door" href="#clothing">
+      <h2>Clothing</h2><p>Everyday wear, the Full Circle way.</p>
+      <div class="art"><svg viewBox="0 0 100 100" fill="#087a3a" aria-hidden="true"><path d="M30 14 L10 26 L18 40 L28 34 V86 H72 V34 L82 40 L90 26 L70 14 C66 24 34 24 30 14 Z"/></svg></div>
+      <b>Shop clothing ›</b>
+    </a>
+    <a class="tile door" href="#tech">
+      <h2>FC Tech</h2><p>Gadgets and accessories.</p>
+      <div class="art"><svg viewBox="0 0 100 100" fill="#111413" aria-hidden="true"><path d="M18 62 V50 a32 32 0 0 1 64 0 V62" fill="none" stroke="#111413" stroke-width="8"/><rect x="10" y="56" width="18" height="30" rx="6"/><rect x="72" y="56" width="18" height="30" rx="6"/></svg></div>
+      <b>Shop tech ›</b>
+    </a>
+    <a class="tile door" href="#kicks">
+      <h2>FC Kicks</h2><p>Sneakers and footwear.</p>
+      <div class="art"><svg viewBox="0 0 100 100" fill="#ce1126" aria-hidden="true"><path d="M8 66 V40 H26 L44 52 L78 60 Q92 64 92 74 V78 H8 Z"/><rect x="8" y="80" width="84" height="6" rx="3"/></svg></div>
+      <b>Shop kicks ›</b>
+    </a>
+  </div>
+
+  <section class="tile shop" id="shop">
+    <div class="shop-head">
+      <h2 id="shop-title">Everything</h2>
+      <span id="shop-count"></span>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="tile how" id="how">
+    <h2>How ordering works</h2>
+    <ol>
+      <li><b>Fill your cart</b><span>Add items from any of the three shops. They all go in one order.</span></li>
+      <li><b>Send it on WhatsApp</b><span>Your cart becomes a ready-written message. Tap send.</span></li>
+      <li><b>We confirm with you</b><span>We reply to confirm stock, delivery and payment.</span></li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Full Circle GY · FC Tech · FC Kicks</span>
+    <span>Prices in Guyanese dollars (GYD).</span>
+  </div>
+</footer>
+
+<dialog class="cart" id="cart" aria-labelledby="cart-title">
+  <form id="cart-form">
+    <header>
+      <h2 id="cart-title">Your cart</h2>
+      <button class="x" type="button" id="close-cart" aria-label="Close cart">×</button>
+    </header>
+    <div class="lines" id="lines"></div>
+    <div class="sum">
+      <div class="total"><span>Total</span><b id="total">GY$0</b></div>
+      <fieldset class="pay">
+        <legend>How you'll pay</legend>
+        <label class="opt" for="pay-mmg"><input type="radio" name="pay" id="pay-mmg" value="mmg" checked><img src="mmg.jpg" alt="" width="28" height="28"><span>Pay with MMG</span></label>
+        <label class="opt" for="pay-chat"><input type="radio" name="pay" id="pay-chat" value="chat"><span>Arrange payment on WhatsApp</span></label>
+      </fieldset>
+      <div class="mmg" id="mmg-box">
+        <ol>
+          <li>Open MMG and send <b id="mmg-amt">GY$0</b> to <b id="mmg-to"></b>.</li>
+          <li>Paste the transaction ID from your MMG confirmation below.</li>
+        </ol>
+        <label for="mmg-id">MMG transaction ID<input id="mmg-id" autocomplete="off" inputmode="text"></label>
+      </div>
+      <label for="cust-name">Your name<input id="cust-name" autocomplete="name"></label>
+      <label for="cust-area">Delivery area<input id="cust-area" placeholder="e.g. Georgetown"></label>
+      <a class="send" id="send" href="#" target="_blank" rel="noopener">Send order on WhatsApp</a>
+      <button class="copy" type="button" id="copy">Copy order text</button>
+      <p class="note" id="note"></p>
+    </div>
+  </form>
+</dialog>
+
+<script>
+/* Store data lives in data/products.json and data/settings.json.
+   Edit it from the admin page (/admin), not here. The values below are only a fallback. */
+let WHATSAPP_NUMBER = "5927616527";
+let MMG_PAY_TO = "761 6527";
+let PRODUCTS = [];
+const slug = t => String(t).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const esc = t => String(t == null ? "" : t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function tidy(list) {
+  return (list || []).filter(p => p && p.name).map(p => ({
+    id: slug((p.dept || "clothing") + "-" + p.name),
+    dept: ["clothing", "tech", "kicks"].includes(p.dept) ? p.dept : "clothing",
+    name: p.name, price: Number(p.price) || 0, blurb: p.blurb || "",
+    sizes: Array.isArray(p.sizes) && p.sizes.length ? p.sizes.map(String) : null,
+    image: p.image || "", soldOut: !!p.soldOut
+  }));
+}
+async function loadStore() {
+  const get = f => fetch(f, { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null);
+  const [p, st] = await Promise.all([get("data/products.json"), get("data/settings.json")]);
+  if (p && Array.isArray(p.products)) PRODUCTS = tidy(p.products);
+  if (st) {
+    if (st.whatsapp) WHATSAPP_NUMBER = String(st.whatsapp).replace(/\D/g, "");
+    if (st.mmg) MMG_PAY_TO = String(st.mmg);
+  }
+  document.querySelector(".draft").hidden = !PRODUCTS.some(x => /^sample/i.test(x.name));
+  renderShop();
+  renderCart();
+}
+
+const DEPTS = {
+  all:      { title: "Everything",  label: "" },
+  clothing: { title: "Clothing",    label: "Full Circle", c: "var(--green)", on: "#fff", tint: "#eff1f2",
+              icon: '<path d="M30 14 L10 26 L18 40 L28 34 V86 H72 V34 L82 40 L90 26 L70 14 C66 24 34 24 30 14 Z"/>' },
+  tech:     { title: "FC Tech",     label: "FC Tech", c: "var(--ink)", on: "#fff", tint: "#eff1f2",
+              icon: '<path d="M18 62 V50 a32 32 0 0 1 64 0 V62" fill="none" stroke="currentColor" stroke-width="8"/><rect x="10" y="56" width="18" height="30" rx="6"/><rect x="72" y="56" width="18" height="30" rx="6"/>' },
+  kicks:    { title: "FC Kicks",    label: "FC Kicks", c: "var(--red)", on: "#fff", tint: "#eff1f2",
+              icon: '<path d="M8 66 V40 H26 L44 52 L78 60 Q92 64 92 74 V78 H8 Z"/><rect x="8" y="80" width="84" height="6" rx="3"/>' }
+};
+const money = n => "GY$" + n.toLocaleString("en-US");
+const $ = id => document.getElementById(id);
+
+/* Cart state: { "productId|size": qty } */
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("fc-cart") || "{}"); } catch (e) { cart = {}; }
+const save = () => { try { localStorage.setItem("fc-cart", JSON.stringify(cart)); } catch (e) {} };
+
+function currentDept() {
+  const h = location.hash.slice(1);
+  return DEPTS[h] ? h : "all";
+}
+
+function renderShop() {
+  const dept = currentDept();
+  const list = PRODUCTS.filter(p => dept === "all" || p.dept === dept);
+  $("shop-title").textContent = DEPTS[dept].title;
+  $("shop-count").textContent = list.length + (list.length === 1 ? " item" : " items");
+  document.querySelectorAll("nav.depts a").forEach(a =>
+    a.setAttribute("aria-current", a.dataset.dept === dept ? "true" : "false"));
+  $("grid").innerHTML = list.map(p => {
+    const d = DEPTS[p.dept];
+    const pic = p.image
+      ? '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy">'
+      : '<svg viewBox="0 0 100 100" fill="currentColor" style="color:' + d.c + '" aria-hidden="true">' + d.icon + '</svg>';
+    const sizes = p.sizes
+      ? '<select id="size-' + p.id + '" aria-label="Size for ' + esc(p.name) + '">' + p.sizes.map(s => '<option>' + esc(s) + '</option>').join("") + '</select>'
+      : "";
+    return '<article class="item">' +
+      '<div class="pic" style="--tint:' + d.tint + ';--c:' + d.c + ';--on:' + d.on + '">' + pic + '<small>' + d.label + '</small></div>' +
+      '<div class="info"><h3>' + esc(p.name) + '</h3><p>' + esc(p.blurb) + '</p>' +
+      '<div class="price">' + money(p.price) + '</div>' +
+      '<div class="buy">' + (p.soldOut ? '<button type="button" disabled>Sold out</button>' : sizes + '<button type="button" data-add="' + p.id + '">Add to cart</button>') + '</div>' +
+      '</div></article>';
+  }).join("");
+}
+
+function cartLines() {
+  return Object.entries(cart).map(([key, qty]) => {
+    const [id, size] = key.split("|");
+    const p = PRODUCTS.find(x => x.id === id);
+    return p ? { key, p, size, qty } : null;
+  }).filter(Boolean);
+}
+
+const payMethod = () => $("pay-mmg").checked ? "mmg" : "chat";
+
+function orderText() {
+  const lines = cartLines();
+  const total = lines.reduce((s, l) => s + l.p.price * l.qty, 0);
+  let t = "Hi Full Circle GY, I'd like to order:\n";
+  lines.forEach(l => {
+    t += "- " + l.qty + " x " + l.p.name + (l.size ? " (size " + l.size + ")" : "") + " = " + money(l.p.price * l.qty) + "\n";
+  });
+  t += "Total: " + money(total) + "\n";
+  const name = $("cust-name").value.trim(), area = $("cust-area").value.trim();
+  if (payMethod() === "mmg") t += "Payment: MMG, transaction ID " + $("mmg-id").value.trim() + "\n";
+  else t += "Payment: to arrange on WhatsApp\n";
+  if (name) t += "Name: " + name + "\n";
+  if (area) t += "Delivery area: " + area + "\n";
+  return t;
+}
+
+function renderCart() {
+  const lines = cartLines();
+  const count = lines.reduce((s, l) => s + l.qty, 0);
+  const total = lines.reduce((s, l) => s + l.p.price * l.qty, 0);
+  $("count").textContent = count;
+  $("total").textContent = money(total);
+  $("lines").innerHTML = lines.length ? lines.map(l =>
+    '<div class="line"><div><b>' + esc(l.p.name) + '</b><small>' + DEPTS[l.p.dept].label + (l.size ? " · size " + esc(l.size) : "") + '</small></div>' +
+    '<div class="amt">' + money(l.p.price * l.qty) + '</div>' +
+    '<div class="qty"><button type="button" data-step="-1" data-key="' + l.key + '" aria-label="One less">−</button><span>' + l.qty +
+    '</span><button type="button" data-step="1" data-key="' + l.key + '" aria-label="One more">+</button></div></div>'
+  ).join("") : '<p class="empty">Your cart is empty. Add something from the shop.</p>';
+
+  const send = $("send");
+  const mmg = payMethod() === "mmg";
+  $("mmg-box").hidden = !mmg;
+  $("mmg-amt").textContent = money(total);
+  $("mmg-to").textContent = MMG_PAY_TO || "[store MMG number]";
+  const needId = mmg && !$("mmg-id").value.trim();
+  const ready = lines.length > 0 && WHATSAPP_NUMBER && !needId;
+  send.setAttribute("aria-disabled", ready ? "false" : "true");
+  send.href = ready ? "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(orderText()) : "#";
+  $("copy").hidden = lines.length === 0;
+  $("note").textContent = !WHATSAPP_NUMBER
+    ? "WhatsApp ordering switches on once the store's number is added."
+    : needId && lines.length ? "Enter your MMG transaction ID to send your order."
+    : mmg ? "Opens WhatsApp with your order and MMG transaction ID. We check the payment before confirming."
+    : "Opens WhatsApp with your order written out. Nothing is charged here.";
+}
+
+document.addEventListener("click", e => {
+  const add = e.target.closest("[data-add]");
+  if (add) {
+    const id = add.dataset.add;
+    const sel = $("size-" + id);
+    const key = id + "|" + (sel ? sel.value : "");
+    cart[key] = (cart[key] || 0) + 1;
+    save(); renderCart();
+    add.textContent = "Added"; add.classList.add("done");
+    setTimeout(() => { add.textContent = "Add to cart"; add.classList.remove("done"); }, 900);
+  }
+  const step = e.target.closest("[data-step]");
+  if (step) {
+    const k = step.dataset.key;
+    cart[k] = (cart[k] || 0) + Number(step.dataset.step);
+    if (cart[k] <= 0) delete cart[k];
+    save(); renderCart();
+  }
+});
+$("open-cart").addEventListener("click", () => { renderCart(); $("cart").showModal(); });
+$("close-cart").addEventListener("click", () => $("cart").close());
+$("cart").addEventListener("click", e => { if (e.target === $("cart")) $("cart").close(); });
+$("cart-form").addEventListener("submit", e => e.preventDefault());
+$("cust-name").addEventListener("input", renderCart);
+$("cust-area").addEventListener("input", renderCart);
+$("mmg-id").addEventListener("input", renderCart);
+$("pay-mmg").addEventListener("change", renderCart);
+$("pay-chat").addEventListener("change", renderCart);
+$("copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(orderText()); $("copy").textContent = "Copied"; }
+  catch (err) { $("copy").textContent = "Could not copy"; }
+  setTimeout(() => { $("copy").textContent = "Copy order text"; }, 1200);
+});
+window.addEventListener("hashchange", () => {
+  if (location.hash === "#how") return;
+  renderShop();
+  if (DEPTS[location.hash.slice(1)]) $("shop").scrollIntoView();
+});
+
+loadStore();
+</script>
+</body>
+</html>

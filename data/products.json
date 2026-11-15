@@ -1,0 +1,116 @@
+{
+  "products": [
+    {
+      "name": "Sample graphic tee",
+      "dept": "clothing",
+      "price": 4500,
+      "blurb": "Cotton crew neck.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample pullover hoodie",
+      "dept": "clothing",
+      "price": 9000,
+      "blurb": "Fleece lined, front pocket.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample snapback cap",
+      "dept": "clothing",
+      "price": 3500,
+      "blurb": "Adjustable, one size.",
+      "sizes": [],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample wireless earbuds",
+      "dept": "tech",
+      "price": 8000,
+      "blurb": "Charging case included.",
+      "sizes": [],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample power bank",
+      "dept": "tech",
+      "price": 6500,
+      "blurb": "10,000 mAh, two USB ports.",
+      "sizes": [],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample phone case",
+      "dept": "tech",
+      "price": 2500,
+      "blurb": "Tell us your phone model.",
+      "sizes": [],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample low-top sneaker",
+      "dept": "kicks",
+      "price": 18000,
+      "blurb": "Everyday white low-top.",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample running shoe",
+      "dept": "kicks",
+      "price": 22000,
+      "blurb": "Light mesh upper.",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "image": "",
+      "soldOut": false
+    },
+    {
+      "name": "Sample slides",
+      "dept": "kicks",
+      "price": 5000,
+      "blurb": "Cushioned footbed.",
+      "sizes": [
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "image": "",
+      "soldOut": false
+    }
+  ]
+}

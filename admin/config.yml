@@ -1,0 +1,43 @@
+# Full Circle GY store admin (Decap CMS)
+backend:
+  name: github
+  repo: FullCircleGY/full-circle-gy
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: store
+    label: Store
+    files:
+      - name: products
+        label: Products
+        file: data/products.json
+        fields:
+          - label: Products
+            name: products
+            widget: list
+            label_singular: product
+            summary: "{{fields.name}} · GY${{fields.price}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - label: Shop
+                name: dept
+                widget: select
+                default: clothing
+                options:
+                  - { label: "Clothing (Full Circle)", value: clothing }
+                  - { label: "FC Tech", value: tech }
+                  - { label: "FC Kicks", value: kicks }
+              - { label: "Price (GYD)", name: price, widget: number, value_type: int, min: 0 }
+              - { label: "Short description", name: blurb, widget: string, required: false }
+              - { label: Sizes, name: sizes, widget: list, required: false, hint: "Separate with commas, e.g. S, M, L, XL. Leave empty if there is only one size." }
+              - { label: Photo, name: image, widget: image, required: false }
+              - { label: "Sold out", name: soldOut, widget: boolean, default: false, required: false }
+      - name: settings
+        label: Store settings
+        file: data/settings.json
+        fields:
+          - { label: "WhatsApp number for orders", name: whatsapp, widget: string, hint: "Digits only with country code, e.g. 5927616527" }
+          - { label: "MMG number customers pay to", name: mmg, widget: string }
