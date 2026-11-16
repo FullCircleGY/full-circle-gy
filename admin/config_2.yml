@@ -1,0 +1,119 @@
+# Full Circle GY store admin (Decap CMS)
+backend:
+  name: github
+  repo: FullCircleGY/full-circle-gy
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: store
+    label: Store
+    files:
+      - name: products
+        label: Products
+        file: data/products.json
+        fields:
+          - label: Products
+            name: products
+            widget: list
+            label_singular: product
+            summary: "{{fields.name}} · GY${{fields.price}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - label: Shop
+                name: dept
+                widget: select
+                default: clothing
+                options:
+                  - { label: "Clothing & Accessories", value: clothing }
+                  - { label: "Tech", value: tech }
+                  - { label: "Kicks", value: kicks }
+              - { label: "Price (GYD)", name: price, widget: number, value_type: int, min: 0 }
+              - { label: "Old price (GYD), for sales", name: oldPrice, widget: number, value_type: int, min: 0, required: false, hint: "Fill this in to show a SALE tag with the old price crossed out. Leave empty when the item is not on sale." }
+              - { label: "Short description", name: blurb, widget: string, required: false, hint: "One line, shown on the product card." }
+              - { label: "Full description", name: details, widget: text, required: false, hint: "Shown when a customer opens the product. Materials, fit, what is in the box." }
+              - { label: Sizes, name: sizes, widget: list, required: false, hint: "Separate with commas, e.g. S, M, L, XL. Leave empty if there is only one size." }
+              - { label: "Main photo", name: image, widget: image, required: false, hint: "Any shape works. It is shown in Instagram portrait shape (4:5, e.g. 1080 x 1350) and cropped from the centre to fit." }
+              - label: "More photos"
+                name: photos
+                widget: list
+                required: false
+                label_singular: photo
+                field: { label: Photo, name: photo, widget: image }
+              - { label: "New arrival", name: isNew, widget: boolean, default: false, required: false, hint: "Shows a NEW tag on the product." }
+              - { label: "Number in stock", name: stock, widget: number, value_type: int, min: 0, required: false, hint: "Optional. At 5 or fewer the store shows 'Only N left'. At 0 it shows Sold out. Leave empty to show nothing." }
+              - { label: "Sold out", name: soldOut, widget: boolean, default: false, required: false }
+      - name: settings
+        label: Store settings
+        file: data/settings.json
+        fields:
+          - { label: "WhatsApp number for orders", name: whatsapp, widget: string, hint: "Digits only with country code, e.g. 5927616527" }
+          - { label: "MMG number customers pay to", name: mmg, widget: string }
+          - { label: "Signup form access key", name: formKey, widget: string, required: false, hint: "The Web3Forms access key emailed to you. The 'Join the Circle' form only appears on the store once this is filled in." }
+          - label: Delivery
+            name: delivery
+            widget: object
+            required: false
+            hint: "Anything you fill in here appears in the 'Delivery, payment and returns' section. Empty boxes are left out."
+            fields:
+              - { label: "Where you deliver", name: areas, widget: text, required: false }
+              - { label: "Delivery fee", name: fee, widget: text, required: false }
+              - { label: "How long delivery takes", name: time, widget: text, required: false }
+              - { label: "Anything else customers should know", name: notes, widget: text, required: false }
+          - { label: "Returns and exchanges policy", name: returns, widget: text, required: false }
+          - label: "Size guides"
+            name: sizeGuides
+            widget: object
+            required: false
+            hint: "Shown as a 'Size guide' drop-down when a customer opens a product that has sizes. Leave empty to hide it."
+            fields:
+              - label: "Clothing & Accessories"
+                name: clothing
+                widget: object
+                required: false
+                fields:
+                  - { label: "Size guide text", name: text, widget: text, required: false }
+                  - { label: "Size chart image", name: image, widget: image, required: false }
+              - label: "Kicks"
+                name: kicks
+                widget: object
+                required: false
+                fields:
+                  - { label: "Size guide text", name: text, widget: text, required: false }
+                  - { label: "Size chart image", name: image, widget: image, required: false }
+          - label: "Discount codes"
+            name: codes
+            widget: list
+            required: false
+            label_singular: "discount code"
+            summary: "{{fields.code}}"
+            hint: "Customers type a code in the cart. The code box only appears on the store when at least one code is switched on."
+            fields:
+              - { label: Code, name: code, widget: string, hint: "For example CIRCLE10. Capital letters or not does not matter." }
+              - label: "Type"
+                name: kind
+                widget: select
+                default: percent
+                options:
+                  - { label: "Percent off", value: percent }
+                  - { label: "Fixed amount off (GYD)", value: amount }
+              - { label: "Value", name: value, widget: number, value_type: int, min: 1, hint: "10 means 10% off, or GY$10 off for a fixed amount." }
+              - { label: "Switched on", name: active, widget: boolean, default: true, required: false }
+          - { label: "Instagram link", name: instagram, widget: string, required: false, hint: "Full link, starting with https://" }
+          - { label: "TikTok link", name: tiktok, widget: string, required: false, hint: "Full link, starting with https://" }
+          - { label: "Facebook link", name: facebook, widget: string, required: false, hint: "Full link, starting with https://" }
+      - name: reviews
+        label: Customer reviews
+        file: data/reviews.json
+        fields:
+          - label: Reviews
+            name: reviews
+            widget: list
+            label_singular: review
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Customer name or initials", name: name, widget: string, required: false }
+              - { label: "What they said", name: text, widget: text, required: false }
+              - { label: "Screenshot of their message", name: photo, widget: image, required: false }
