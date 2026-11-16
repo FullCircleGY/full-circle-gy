@@ -62,6 +62,44 @@ collections:
               - { label: "How long delivery takes", name: time, widget: text, required: false }
               - { label: "Anything else customers should know", name: notes, widget: text, required: false }
           - { label: "Returns and exchanges policy", name: returns, widget: text, required: false }
+          - label: "Size guides"
+            name: sizeGuides
+            widget: object
+            required: false
+            hint: "Shown as a 'Size guide' drop-down when a customer opens a product that has sizes. Leave empty to hide it."
+            fields:
+              - label: "Clothing & Accessories"
+                name: clothing
+                widget: object
+                required: false
+                fields:
+                  - { label: "Size guide text", name: text, widget: text, required: false }
+                  - { label: "Size chart image", name: image, widget: image, required: false }
+              - label: "Kicks"
+                name: kicks
+                widget: object
+                required: false
+                fields:
+                  - { label: "Size guide text", name: text, widget: text, required: false }
+                  - { label: "Size chart image", name: image, widget: image, required: false }
+          - label: "Discount codes"
+            name: codes
+            widget: list
+            required: false
+            label_singular: "discount code"
+            summary: "{{fields.code}}"
+            hint: "Customers type a code in the cart. The code box only appears on the store when at least one code is switched on."
+            fields:
+              - { label: Code, name: code, widget: string, hint: "For example CIRCLE10. Capital letters or not does not matter." }
+              - label: "Type"
+                name: kind
+                widget: select
+                default: percent
+                options:
+                  - { label: "Percent off", value: percent }
+                  - { label: "Fixed amount off (GYD)", value: amount }
+              - { label: "Value", name: value, widget: number, value_type: int, min: 1, hint: "10 means 10% off, or GY$10 off for a fixed amount." }
+              - { label: "Switched on", name: active, widget: boolean, default: true, required: false }
           - { label: "Instagram link", name: instagram, widget: string, required: false, hint: "Full link, starting with https://" }
           - { label: "TikTok link", name: tiktok, widget: string, required: false, hint: "Full link, starting with https://" }
           - { label: "Facebook link", name: facebook, widget: string, required: false, hint: "Full link, starting with https://" }
