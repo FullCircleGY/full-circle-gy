@@ -104,6 +104,10 @@ main.wrap { display: flex; flex-direction: column; gap: 22px; padding-top: 26px;
 .door:nth-child(2) { animation-delay: .4s; }
 .door:nth-child(3) { animation-delay: .8s; }
 .door img { width: 100%; height: auto; aspect-ratio: 770 / 208; object-fit: cover; }
+.door-name { display: none; }
+.door.noimg img { display: none; }
+.door.noimg .door-name { display: flex; flex-direction: column; justify-content: center; gap: 10px; min-height: 100px; padding: 18px 20px; font-family: var(--px); font-size: 12px; line-height: 1.5; color: var(--ink); text-transform: uppercase; }
+.door.noimg .door-name small { font-size: 9px; color: var(--green); }
 .door:hover, .door.sel { scale: 1.03; z-index: 2; border-color: var(--gold); }
 .door:active { scale: .98; }
 .door.sel::before { content: "▼ SELECT"; position: absolute; left: 50%; top: -30px; translate: -50% 0; font-family: var(--px); font-size: 10px; color: var(--gold); white-space: nowrap; animation: blink .6s steps(2) infinite; }
@@ -273,9 +277,9 @@ dialog.cart::backdrop { background: rgba(0, 0, 0, .7); }
   </div>
 
   <div class="row doors" id="doors">
-    <a class="tile door" href="#clothing"><img src="banners/clothing.webp" width="770" height="208" alt="Clothing &amp; Accessories. Shop now."></a>
-    <a class="tile door" href="#tech"><img src="banners/tech.webp" width="770" height="208" alt="Tech. Shop now."></a>
-    <a class="tile door" href="#kicks"><img src="banners/kicks.webp" width="770" height="208" alt="Kicks. Shop now."></a>
+    <a class="tile door" href="#clothing"><img src="sections/clothing.jpg" width="770" height="208" alt="Clothing &amp; Accessories. Shop now." onerror="this.parentNode.classList.add('noimg')"><span class="door-name">Clothing &amp; Accessories<small>Shop now ›</small></span></a>
+    <a class="tile door" href="#tech"><img src="sections/tech.jpg" width="770" height="208" alt="Tech. Shop now." onerror="this.parentNode.classList.add('noimg')"><span class="door-name">Tech<small>Shop now ›</small></span></a>
+    <a class="tile door" href="#kicks"><img src="sections/kicks.jpg" width="770" height="208" alt="Kicks. Shop now." onerror="this.parentNode.classList.add('noimg')"><span class="door-name">Kicks<small>Shop now ›</small></span></a>
   </div>
 
   <section class="tile shop" id="shop">
