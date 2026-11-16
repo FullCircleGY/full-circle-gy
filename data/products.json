@@ -422,6 +422,60 @@
       "isNew": false,
       "stock": null,
       "soldOut": false
+    },
+    {
+      "name": "Coach Cross Slide",
+      "dept": "kicks",
+      "price": 25000,
+      "oldPrice": 30000,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/IMG_1721.jpeg",
+      "photos": [],
+      "isNew": true,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Nike Tech Fleece",
+      "dept": "clothing",
+      "price": 45000,
+      "oldPrice": null,
+      "blurb": "+ FREE Ski Mask",
+      "details": "",
+      "sizes": [
+        "Black & Grey",
+        "Grey & White"
+      ],
+      "image": "/images/uploads/IMG_1722.jpeg",
+      "photos": [
+        "/images/uploads/IMG_1723.jpeg"
+      ],
+      "isNew": true,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Lacoste TrackSuit",
+      "dept": "clothing",
+      "price": 35000,
+      "oldPrice": 45000,
+      "blurb": "",
+      "details": "",
+      "sizes": [
+        "White",
+        "Black",
+        "Navy"
+      ],
+      "image": "/images/uploads/IMG_1726.jpeg",
+      "photos": [
+        "/images/uploads/IMG_1724.jpeg",
+        "/images/uploads/IMG_1725.jpeg"
+      ],
+      "isNew": true,
+      "stock": null,
+      "soldOut": false
     }
   ]
 }
