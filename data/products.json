@@ -1,18 +1,132 @@
 {
   "products": [
     {
-      "dept": "tech",
-      "soldOut": false,
       "name": "Apple Type C To Type C Charger",
+      "dept": "tech",
       "price": 8000,
-      "image": "/images/uploads/img_1628.jpeg"
+      "oldPrice": 8500,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/img_1628.jpeg",
+      "photos": [],
+      "isNew": true,
+      "stock": null,
+      "soldOut": false
     },
     {
-      "dept": "clothing",
-      "soldOut": false,
-      "name": "AirPods Max + FREE AirPods Pro 3",
+      "name": "Airpods Max + FREE AirPods Pro 3",
+      "dept": "tech",
       "price": 25000,
-      "image": "/images/uploads/img_1509.jpeg"
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/img_1509.jpeg",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Airpods Max + FREE Solar Fan Hat",
+      "dept": "tech",
+      "price": 25000,
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/1b1a9393-dd4e-4c2a-af22-d6b015956ab7.png",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Airpods Max + FREE Beats Pill Speaker",
+      "dept": "tech",
+      "price": 25000,
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/728d0f30-ab4d-4da0-a2b8-114c2c91b5a5.png",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Airpods Max + FREE 4k Rotational Vlog Camera",
+      "dept": "tech",
+      "price": 25000,
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/9eb594e4-8df2-4947-9f04-f4f7a4c7eca1.png",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Airpods Max + FREE Magsafe Battery Pack",
+      "dept": "tech",
+      "price": 25000,
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/img_1506.jpeg",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Airpods Pro 3 Limited Time Deal",
+      "dept": "tech",
+      "price": 20000,
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/456cf43c-c75a-44d3-a694-e1bd8387d4ba.png",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
+    },
+    {
+      "name": "Airpods 4 Limited Time Deal",
+      "dept": "clothing",
+      "price": 20000,
+      "oldPrice": null,
+      "blurb": "",
+      "details": "",
+      "sizes": [],
+      "image": "/images/uploads/f1dca952-65cd-48f3-a8b5-1ad6bfef49a2.png",
+      "photos": [],
+      "isNew": false,
+      "stock": 0,
+      "soldOut": true
+    },
+    {
+      "name": "Nike Ski Mask/Skull Cap",
+      "dept": "clothing",
+      "price": 8500,
+      "oldPrice": null,
+      "blurb": "Any 2 for $15,000",
+      "details": "",
+      "sizes": [
+        "black ski, camo ski, black skull cap"
+      ],
+      "image": "/images/uploads/ad9817f0-f10d-4d0f-95e8-d462da2abbdf.png",
+      "photos": [],
+      "isNew": false,
+      "stock": null,
+      "soldOut": false
     }
   ]
 }
