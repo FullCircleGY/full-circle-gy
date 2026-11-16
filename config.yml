@@ -3,6 +3,7 @@ backend:
   name: github
   repo: FullCircleGY/full-circle-gy
   branch: main
+  site_domain: fullcirclegyshop.netlify.app   # keeps admin login working on the custom domain
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
