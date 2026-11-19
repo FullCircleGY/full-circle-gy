@@ -8,6 +8,15 @@
     "notes": "Delivery Cost is Based On Distance and Yes We Do Ship To Linden, Berbice and New Amsterdam"
   },
   "returns": "All Sales Final , Exchanges Are Allowed Within 24hrs After Purchasing",
+  "sizeGuides": null,
+  "codes": [
+    {
+      "code": "1FCNEVA1",
+      "kind": "percent",
+      "value": 10,
+      "active": true
+    }
+  ],
   "instagram": "https://www.instagram.com/fullcircle.gy/",
   "tiktok": "https://www.tiktok.com/@fullcircle.gy",
   "facebook": ""
